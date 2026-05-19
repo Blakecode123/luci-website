@@ -1914,7 +1914,7 @@ a.past-event-card:hover{
   }
 
   .hero-slide-layer:nth-child(3){
-    background-position:var(--hero-pos-mobile-3, 78% 50%);
+    background-position:var(--hero-pos-mobile-3, 74% 50%);
     transform:scaleX(-1) scale(1.35);
     top:-58px;
     -webkit-mask-image:linear-gradient(
