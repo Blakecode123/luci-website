@@ -1915,8 +1915,8 @@ a.past-event-card:hover{
 
   .hero-slide-layer:nth-child(3){
     background-position:var(--hero-pos-mobile-3, 73% 50%);
-    transform:scaleX(-1) scale(1.35) rotate(1deg);
-    top:-76px;
+    transform:scaleX(-1) scale(1.35);
+    top:-98px;
     -webkit-mask-image:linear-gradient(
       180deg,
       #000 0%,
