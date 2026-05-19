@@ -34,7 +34,7 @@ top:20px;
   --section-bg:#ece4f2;
 }
 
-*{box-sizing:border-box}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 
 html,body{height:100%}
 
