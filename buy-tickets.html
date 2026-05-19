@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anxi · Upcoming events</title>
+  <meta name="description" content="Book a ticket to an upcoming gong bath or sound healing event." />
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+  <meta property="og:title" content="Anxi · Upcoming events" />
+  <meta property="og:description" content="Tickets for upcoming gong baths and sound events." />
+  <meta property="og:image" content="assets/banner1.png" />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="tickets">
+
+  <div data-nav></div>
+
+  <header class="page-hero">
+    <div class="container">
+      <h1>Upcoming events</h1>
+      <p class="hero-subtitle">See upcoming gong bath events near you.</p>
+    </div>
+  </header>
+
+  <main class="section" style="padding-top:42px;">
+    <div class="container">
+      <script src="https://events.humanitix.com/scripts/widgets/inline.js" type="module"></script>
+      <iframe data-collection="gong-bath-2026" scrolling="no" style="width:100%; border:0; display:block; overflow:hidden;"></iframe>
+    </div>
+  </main>
+
+  <section class="section" style="padding-top:0;padding-bottom:80px;">
+    <div class="container">
+      <h2 class="section-title" style="margin-bottom:28px;">Past Events</h2>
+      <div class="past-events-grid" data-past-events></div>
+    </div>
+  </section>
+
+  <div data-footer></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

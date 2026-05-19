@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anxi · Private Events</title>
+  <meta name="description" content="Book a private gong bath, singing bowls, yoga or breathwork session with Lucinda." />
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+  <meta property="og:title" content="Anxi · Private Events" />
+  <meta property="og:description" content="Book a private gong bath, singing bowls, yoga or breathwork session." />
+  <meta property="og:image" content="assets/banner1.png" />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="private">
+
+  <div data-nav></div>
+
+  <header class="page-hero">
+    <div class="container">
+      <h1>Private Events</h1>
+      <p class="hero-subtitle">Looking for yourself or a group? Tell me your preferred time and date.</p>
+    </div>
+  </header>
+
+  <main class="section" style="padding-top:42px;">
+    <div class="container">
+      <div class="grid two">
+
+        <div class="card">
+          <div class="event-type-toggle" role="group" aria-label="Event type">
+            <button type="button" class="toggle-btn active" data-price-type="gong">Gong Bath</button>
+            <button type="button" class="toggle-btn" data-price-type="yoga">Yoga</button>
+            <button type="button" class="toggle-btn" data-price-type="singingbowls">Singing Bowls</button>
+            <button type="button" class="toggle-btn" data-price-type="breathwork">Breathwork/Meditation</button>
+          </div>
+
+          <h2 class="modality-heading">Price List</h2>
+
+          <div id="price-display" class="simple-price-text"></div>
+
+          <p id="additional-costs-text" class="note" style="margin:12px 0 18px 0;">
+            Additional Costs: Additional participants, travel distance, optional venue hire.
+          </p>
+
+          <hr class="hr" />
+
+          <h2 class="modality-heading">Request a booking</h2>
+
+          <form class="form" id="privateForm" name="private-event" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="private-event" />
+            <input type="hidden" id="eventTypeHidden" name="eventType" value="gong" />
+
+            <div class="row2">
+              <div>
+                <label for="name">Name</label>
+                <input id="name" name="name" required />
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" required />
+              </div>
+            </div>
+
+            <div>
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" />
+            </div>
+
+            <div class="row2">
+              <div>
+                <label for="date">Preferred date</label>
+                <input id="date" name="date" type="date" required />
+              </div>
+              <div>
+                <label for="time">Time of day</label>
+                <select id="time" name="time" required>
+                  <option value="">Select…</option>
+                  <option>Morning</option>
+                  <option>Afternoon</option>
+                  <option>Evening</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label for="venue">Venue</label>
+              <select id="venue" name="venue" required>
+                <option value="">Select…</option>
+                <option value="own">I have my own space</option>
+                <option value="hire">I need venue hire</option>
+                <option value="online">Online</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="notes">Additional details</label>
+              <textarea id="notes" name="notes" placeholder="Address, access details, parking, special requests, or anything useful to know."></textarea>
+            </div>
+
+            <button class="btn primary" type="submit">Send</button>
+          </form>
+
+          <p class="small" style="margin:12px 0 0 0;">
+            I'll be in contact soon to get everything sorted for you!
+          </p>
+        </div>
+
+        <div class="card">
+          <div id="modality-description" class="modality-description"></div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <div data-footer></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anxi · Contact</title>
+  <meta name="description" content="Get in touch with Lucinda — questions about sessions, accessibility, or private bookings." />
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+  <meta property="og:title" content="Anxi · Contact" />
+  <meta property="og:description" content="Questions about sessions, accessibility, or private bookings." />
+  <meta property="og:image" content="assets/banner1.png" />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="contact">
+
+  <div data-nav></div>
+
+  <header class="page-hero">
+    <div class="container">
+      <h1>Contact</h1>
+      <p class="hero-subtitle">Questions about sessions, accessibility, or private bookings.</p>
+      <div class="badge">Get in touch</div>
+    </div>
+  </header>
+
+  <main class="section" style="padding-top:42px;">
+    <div class="container">
+      <div class="grid two">
+        <div class="card">
+          <h2 class="modality-heading">Message</h2>
+
+          <form class="form" name="contact" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="contact" />
+
+            <div class="row2">
+              <div>
+                <label for="cname">Name</label>
+                <input id="cname" name="name" required />
+              </div>
+              <div>
+                <label for="cemail">Email</label>
+                <input id="cemail" name="email" type="email" required />
+              </div>
+            </div>
+
+            <div>
+              <label for="cmsg">Message</label>
+              <textarea id="cmsg" name="message" required></textarea>
+            </div>
+
+            <button class="btn primary" type="submit">Send</button>
+          </form>
+
+          <p class="small" style="margin:12px 0 0 0;">
+            I'll get back to you soon!
+          </p>
+        </div>
+
+        <div class="card">
+          <h2 class="modality-heading">Details</h2>
+          <div class="price-table">
+            <div class="price-row">
+              <span class="left">Email</span>
+              <span class="right">lucinda@anxi.com.au</span>
+            </div>
+<div class="price-row">
+              <span class="left">Instagram</span>
+              <span class="right">@anxirelief</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div data-footer></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

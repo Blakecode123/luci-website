@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Adjust Banner 3</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      background: #1a0d2e;
+      color: #fff;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    h1 { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
+    p.sub { font-size: 13px; opacity: .65; margin-bottom: 20px; }
+
+    .frames {
+      display: grid;
+      grid-template-columns: 375px 1fr;
+      gap: 20px;
+      align-items: start;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 860px) { .frames { grid-template-columns: 1fr; } }
+
+    .frame-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      opacity: .7;
+      margin-bottom: 8px;
+    }
+
+    /* Mobile preview */
+    .mobile-preview {
+      width: 375px;
+      max-width: 100%;
+      height: 340px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.15);
+      position: relative;
+    }
+    #mob-shift {
+      position: absolute;
+      inset: 0;
+    }
+    #mob-bg {
+      width: 100%;
+      height: 100%;
+      background-image: url('assets/banner3.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: 93% 50%;
+      transform: scaleX(-1) scale(1.45);
+      transform-origin: center center;
+    }
+
+    /* Desktop preview */
+    .desktop-scaler-outer {
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.15);
+      position: relative;
+      height: 480px;
+    }
+    #desk-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('assets/banner3.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: 57% 98%;
+      transform-origin: center center;
+    }
+
+    /* Controls */
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 700px) { .controls { grid-template-columns: 1fr; } }
+
+    .panel {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 14px;
+      padding: 16px;
+    }
+    .panel h2 { font-size: 14px; font-weight: 650; margin-bottom: 12px; }
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 13px;
+    }
+    label .lbl { width: 46px; font-weight: 600; font-size: 12px; flex-shrink:0; }
+    label input[type=range] { flex: 1; accent-color: #a07ec4; }
+    label .val { width: 52px; text-align: right; font-variant-numeric: tabular-nums; font-size: 13px; }
+
+    .btns { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+    button {
+      flex: 1;
+      padding: 9px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.10);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    button:hover { background: rgba(255,255,255,.22); }
+    button.primary { background: rgba(160,126,196,.85); border-color: rgba(160,126,196,.9); }
+    button.primary:hover { background: rgba(160,126,196,1); }
+
+    .css-out {
+      margin-top: 14px;
+      background: rgba(0,0,0,.35);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-family: ui-monospace, monospace;
+      font-size: 12px;
+      color: #c8b8e8;
+      line-height: 1.6;
+      white-space: pre;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Banner 3 — Position, Zoom &amp; Rotation Tool</h1>
+  <p class="sub">Adjust position, zoom and rotation for mobile and desktop separately. Click Copy CSS and paste to Claude.</p>
+
+  <div class="frames">
+    <div class="frame-wrap">
+      <div class="frame-label">Mobile preview (375px) — mirrored like the real site</div>
+      <div class="mobile-preview">
+        <div id="mob-shift">
+          <div id="mob-bg"></div>
+        </div>
+      </div>
+    </div>
+    <div class="frame-wrap">
+      <div class="frame-label">Desktop preview</div>
+      <div class="desktop-scaler-outer">
+        <div id="desk-bg"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <div class="panel">
+      <h2>📱 Mobile — position, zoom &amp; rotation</h2>
+      <label><span class="lbl">X</span><input type="range" id="m-x" min="0" max="100" value="93"><span class="val" id="m-x-v">93%</span></label>
+      <label><span class="lbl">Up/Down</span><input type="range" id="m-y" min="-200" max="200" step="2" value="-20"><span class="val" id="m-y-v">-20px</span></label>
+      <label><span class="lbl">Zoom</span><input type="range" id="m-z" min="100" max="300" step="5" value="145"><span class="val" id="m-z-v">1.45×</span></label>
+      <label><span class="lbl">Rotate</span><input type="range" id="m-r" min="-45" max="45" step="1" value="0"><span class="val" id="m-r-v">0°</span></label>
+      <div class="btns">
+        <button class="primary" id="m-copy">Copy CSS</button>
+        <button id="m-reset">Reset</button>
+      </div>
+      <div class="css-out" id="m-css"></div>
+    </div>
+
+    <div class="panel">
+      <h2>🖥 Desktop — position, zoom &amp; rotation</h2>
+      <label><span class="lbl">X</span><input type="range" id="d-x" min="0" max="100" value="57"><span class="val" id="d-x-v">57%</span></label>
+      <label><span class="lbl">Y</span><input type="range" id="d-y" min="0" max="100" value="98"><span class="val" id="d-y-v">98%</span></label>
+      <label><span class="lbl">L/R</span><input type="range" id="d-lr" min="-400" max="400" step="4" value="-4"><span class="val" id="d-lr-v">-4px</span></label>
+      <label><span class="lbl">Zoom</span><input type="range" id="d-z" min="100" max="300" step="5" value="100"><span class="val" id="d-z-v">1.0×</span></label>
+      <label><span class="lbl">Rotate</span><input type="range" id="d-r" min="-45" max="45" step="1" value="0"><span class="val" id="d-r-v">0°</span></label>
+      <div class="btns">
+        <button class="primary" id="d-copy">Copy CSS</button>
+        <button id="d-reset">Reset</button>
+      </div>
+      <div class="css-out" id="d-css"></div>
+    </div>
+  </div>
+
+  <script>
+    var mobShift = document.getElementById('mob-shift');
+    var mobBg    = document.getElementById('mob-bg');
+    var deskBg   = document.getElementById('desk-bg');
+
+    var mX  = document.getElementById('m-x');
+    var mY  = document.getElementById('m-y');
+    var mZ  = document.getElementById('m-z');
+    var mR  = document.getElementById('m-r');
+    var mXv = document.getElementById('m-x-v');
+    var mYv = document.getElementById('m-y-v');
+    var mZv = document.getElementById('m-z-v');
+    var mRv = document.getElementById('m-r-v');
+    var mCss = document.getElementById('m-css');
+
+    var dX  = document.getElementById('d-x');
+    var dY  = document.getElementById('d-y');
+    var dLR = document.getElementById('d-lr');
+    var dZ  = document.getElementById('d-z');
+    var dR  = document.getElementById('d-r');
+    var dXv = document.getElementById('d-x-v');
+    var dYv = document.getElementById('d-y-v');
+    var dLRv= document.getElementById('d-lr-v');
+    var dZv = document.getElementById('d-z-v');
+    var dRv = document.getElementById('d-r-v');
+    var dCss = document.getElementById('d-css');
+
+    function applyMobile() {
+      var zoom = (parseInt(mZ.value, 10) / 100).toFixed(2);
+      var offsetY = parseInt(mY.value, 10);
+      var rot = parseInt(mR.value, 10);
+      mobShift.style.transform = 'translateY(' + offsetY + 'px)';
+      mobBg.style.backgroundPosition = mX.value + '% 50%';
+      var t = 'scaleX(-1) scale(' + zoom + ')';
+      if (rot !== 0) t += ' rotate(' + rot + 'deg)';
+      mobBg.style.transform = t;
+      mXv.textContent = mX.value + '%';
+      mYv.textContent = (offsetY > 0 ? '+' : '') + offsetY + 'px';
+      mZv.textContent = parseFloat(zoom).toFixed(2) + '×';
+      mRv.textContent = (rot > 0 ? '+' : '') + rot + '°';
+      var css = 'background-position: var(--hero-pos-mobile-3, ' + mX.value + '% 50%);\n';
+      var tr = 'scaleX(-1) scale(' + zoom + ')';
+      if (rot !== 0) tr += ' rotate(' + rot + 'deg)';
+      css += 'transform: ' + tr + ';\n';
+      css += 'top: ' + offsetY + 'px;';
+      mCss.textContent = css;
+    }
+
+    function applyDesktop() {
+      var zoom = (parseInt(dZ.value, 10) / 100).toFixed(2);
+      var lr   = parseInt(dLR.value, 10);
+      var rot  = parseInt(dR.value, 10);
+      var pos  = dX.value + '% ' + dY.value + '%';
+      deskBg.style.backgroundPosition = pos;
+      var parts = [];
+      if (lr !== 0) parts.push('translateX(' + lr + 'px)');
+      if (parseFloat(zoom) !== 1) parts.push('scale(' + zoom + ')');
+      if (rot !== 0) parts.push('rotate(' + rot + 'deg)');
+      deskBg.style.transform = parts.length ? parts.join(' ') : 'none';
+      dXv.textContent  = dX.value + '%';
+      dYv.textContent  = dY.value + '%';
+      dLRv.textContent = (lr > 0 ? '+' : '') + lr + 'px';
+      dZv.textContent  = parseFloat(zoom).toFixed(2) + '×';
+      dRv.textContent  = (rot > 0 ? '+' : '') + rot + '°';
+      var css = 'background-position: ' + pos + ';';
+      if (parts.length) css += '\ntransform: ' + parts.join(' ') + ';';
+      dCss.textContent = css;
+    }
+
+    [mX, mY, mZ, mR].forEach(function(el){ el.addEventListener('input', applyMobile); });
+    [dX, dY, dLR, dZ, dR].forEach(function(el){ el.addEventListener('input', applyDesktop); });
+
+    function copyText(text, btn) {
+      var orig = btn.textContent;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () {
+          btn.textContent = 'Copied ✓';
+          setTimeout(function () { btn.textContent = orig; }, 1400);
+        }, function () { window.prompt('Copy this:', text); });
+      } else {
+        window.prompt('Copy this:', text);
+      }
+    }
+
+    document.getElementById('m-copy').addEventListener('click', function () { copyText(mCss.textContent, this); });
+    document.getElementById('d-copy').addEventListener('click', function () { copyText(dCss.textContent, this); });
+    document.getElementById('m-reset').addEventListener('click', function () {
+      mX.value = 93; mY.value = -20; mZ.value = 145; mR.value = 0; applyMobile();
+    });
+    document.getElementById('d-reset').addEventListener('click', function () {
+      dX.value = 57; dY.value = 98; dLR.value = -4; dZ.value = 100; dR.value = 0; applyDesktop();
+    });
+
+    applyMobile();
+    applyDesktop();
+  </script>
+
+</body>
+</html>

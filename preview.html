@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anxi · Preview Viewer (local QA)</title>
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="robots" content="noindex" />
+</head>
+<body>
+  <div class="preview-shell">
+    <div class="preview-bar">
+      <h1>Anxi — Preview Viewer</h1>
+
+      <label for="pv-page">Page</label>
+      <select id="pv-page">
+        <option value="index.html">Home</option>
+        <option value="buy-tickets.html">Upcoming events</option>
+        <option value="private-events.html">Private Events</option>
+        <option value="gallery.html">Gallery</option>
+        <option value="faq.html">FAQ</option>
+        <option value="about.html">About Me</option>
+        <option value="testimonials.html">Testimonials</option>
+        <option value="contact.html">Contact</option>
+      </select>
+
+      <label for="pv-desktop-w">Desktop width</label>
+      <select id="pv-desktop-w">
+        <option value="1280">1280px</option>
+        <option value="1440" selected>1440px</option>
+        <option value="1680">1680px</option>
+        <option value="1920">1920px</option>
+      </select>
+
+      <label for="pv-mobile-w">Mobile width</label>
+      <select id="pv-mobile-w">
+        <option value="320">320px (iPhone SE)</option>
+        <option value="375" selected>375px (iPhone)</option>
+        <option value="414">414px (iPhone Plus)</option>
+        <option value="430">430px (iPhone Pro Max)</option>
+      </select>
+
+      <button id="pv-reload" class="btn primary" style="padding:10px 18px; box-shadow:none;">Reload</button>
+    </div>
+
+    <div class="preview-stage">
+      <div class="preview-frame mobile">
+        <div class="preview-frame-label" id="pv-mobile-label">Mobile · 375px</div>
+        <iframe id="pv-mobile" title="Mobile preview"></iframe>
+      </div>
+
+      <div class="preview-frame desktop">
+        <div class="preview-frame-label" id="pv-desktop-label">Desktop · 1440px (scaled to fit)</div>
+        <div class="scaler" id="pv-scaler">
+          <iframe id="pv-desktop" title="Desktop preview"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var pageSel = document.getElementById('pv-page');
+      var dwSel = document.getElementById('pv-desktop-w');
+      var mwSel = document.getElementById('pv-mobile-w');
+      var reload = document.getElementById('pv-reload');
+      var mobile = document.getElementById('pv-mobile');
+      var desktop = document.getElementById('pv-desktop');
+      var scaler = document.getElementById('pv-scaler');
+      var mLabel = document.getElementById('pv-mobile-label');
+      var dLabel = document.getElementById('pv-desktop-label');
+
+      function applyDesktopScale() {
+        var w = parseInt(dwSel.value, 10);
+        desktop.style.width = w + 'px';
+        var available = scaler.clientWidth;
+        var scale = Math.min(1, available / w);
+        desktop.style.transform = 'scale(' + scale + ')';
+        // Reserve height so the scaled iframe fits visually
+        var baseH = 820;
+        scaler.style.height = (baseH * scale) + 'px';
+        dLabel.textContent = 'Desktop · ' + w + 'px (scaled ' + Math.round(scale * 100) + '%)';
+      }
+
+      function applyMobile() {
+        var w = parseInt(mwSel.value, 10);
+        // Keep mobile column at chosen width
+        document.querySelector('.preview-frame.mobile').style.width = w + 'px';
+        document.querySelector('.preview-stage').style.gridTemplateColumns = w + 'px 1fr';
+        mLabel.textContent = 'Mobile · ' + w + 'px';
+      }
+
+      function load() {
+        var page = pageSel.value;
+        mobile.src = page;
+        desktop.src = page;
+      }
+
+      pageSel.addEventListener('change', load);
+      dwSel.addEventListener('change', function () { applyDesktopScale(); });
+      mwSel.addEventListener('change', function () { applyMobile(); });
+      reload.addEventListener('click', load);
+      window.addEventListener('resize', applyDesktopScale);
+
+      applyMobile();
+      applyDesktopScale();
+      load();
+    })();
+  </script>
+</body>
+</html>
