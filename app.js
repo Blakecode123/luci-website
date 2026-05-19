@@ -149,13 +149,13 @@
     var links = NAV_LINKS.map(function (l) {
       if (l.key === 'home') {
         var cls = 'brand-logo' + (active === 'home' ? ' active' : '');
-        return '<a href="' + l.href + '" class="' + cls + '" aria-label="Anxi home"><img src="assets/logo.png" alt="Anxi"></a>';
+        // Desktop: Instagram icon right after the logo, before Upcoming events
+        return '<a href="' + l.href + '" class="' + cls + '" aria-label="Anxi home"><img src="assets/logo.png" alt="Anxi"></a>' +
+               '<a href="' + INSTA_URL + '" class="nav-insta" target="_blank" rel="noopener" aria-label="Instagram">' + INSTA_ICON + '</a>';
       }
       var cls = l.key === active ? 'active' : '';
       return '<a href="' + l.href + '" class="' + cls + '">' + l.label + '</a>';
     }).join('');
-    // Desktop: Instagram icon after Contact in the menu
-    links += '<a href="' + INSTA_URL + '" class="nav-insta" target="_blank" rel="noopener" aria-label="Instagram">' + INSTA_ICON + '</a>';
     var html =
       '<div class="nav nav-solid">' +
         '<div class="container nav-shell">' +
