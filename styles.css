@@ -146,6 +146,10 @@ a:hover{opacity:.9}
   background:rgba(255,255,255,.85);
 }
 
+.brand-logo.active::after{
+  bottom:8px;
+}
+
 .nav-toggle{
   display:none;
   margin-left:auto;
