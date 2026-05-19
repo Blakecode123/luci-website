@@ -551,7 +551,14 @@ a:hover{opacity:.9}
 .hero-arrow-next{ right:16px; }
 
 @media (max-width:760px){
-  .hero-arrow{ display:none; }
+  .hero-arrow{
+    display:block;
+    font-size:40px;
+    top:170px;
+    padding:0 10px;
+    color:rgba(255,255,255,.80);
+    text-shadow:0 2px 8px rgba(0,0,0,.35);
+  }
 }
 
 .hero-cta-bridge{
@@ -1971,6 +1978,16 @@ a.past-event-card:hover{
     bottom:auto;
     pointer-events:auto;
     margin:28px 0 0;
+  }
+
+  .hero-learn-more{
+    color:rgba(44,28,61,.85);
+    border-bottom-color:rgba(44,28,61,.35);
+  }
+
+  .hero-learn-more:hover{
+    color:#2c1c3d;
+    border-bottom-color:#2c1c3d;
   }
 
   .home-mailing-section{
