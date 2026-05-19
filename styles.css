@@ -150,6 +150,25 @@ a:hover{opacity:.9}
   bottom:8px;
 }
 
+/* Instagram nav icon — desktop */
+.nav-insta{
+  display:inline-flex;
+  align-items:center;
+  color:rgba(255,255,255,.85);
+  line-height:0;
+  padding:8px 0;
+}
+
+.nav-insta:hover{
+  color:#fff;
+  opacity:1;
+}
+
+/* Instagram fixed icon — mobile only */
+.mob-insta{
+  display:none;
+}
+
 .nav-toggle{
   display:none;
   margin-left:auto;
@@ -1978,6 +1997,24 @@ a.past-event-card:hover{
     bottom:auto;
     pointer-events:auto;
     margin:28px 0 0;
+  }
+
+  .mob-insta{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:fixed;
+    top:14px;
+    left:16px;
+    z-index:200;
+    width:36px;
+    height:36px;
+    color:rgba(255,255,255,.92);
+    filter:drop-shadow(0 1px 4px rgba(0,0,0,.35));
+  }
+
+  .nav-insta{
+    display:none;
   }
 
   .hero-learn-more{

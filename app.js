@@ -139,6 +139,9 @@
     { href: 'contact.html',        label: 'Contact',         key: 'contact' }
   ];
 
+  var INSTA_URL = 'https://www.instagram.com/anxirelief/?hl=en';
+  var INSTA_ICON = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>';
+
   function renderNav() {
     var slot = document.querySelector('[data-nav]');
     if (!slot) return;
@@ -151,9 +154,12 @@
       var cls = l.key === active ? 'active' : '';
       return '<a href="' + l.href + '" class="' + cls + '">' + l.label + '</a>';
     }).join('');
+    // Desktop: Instagram icon after Contact in the menu
+    links += '<a href="' + INSTA_URL + '" class="nav-insta" target="_blank" rel="noopener" aria-label="Instagram">' + INSTA_ICON + '</a>';
     var html =
       '<div class="nav nav-solid">' +
         '<div class="container nav-shell">' +
+          '<a href="' + INSTA_URL + '" class="mob-insta" target="_blank" rel="noopener" aria-label="Instagram">' + INSTA_ICON + '</a>' +
           '<button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle menu" aria-expanded="false">' +
             '<span class="bars"></span>' +
           '</button>' +
@@ -170,7 +176,7 @@
     var links = NAV_LINKS.map(function (l) {
       return '<a href="' + l.href + '">' + l.label + '</a>';
     }).join('') +
-      '<a href="https://instagram.com/anxi_relief" target="_blank" rel="noopener">Instagram</a>';
+      '<a href="' + INSTA_URL + '" target="_blank" rel="noopener">Instagram</a>';
     slot.outerHTML =
       '<footer class="footer">' +
         '<div class="container footer-links-wrap">' +
