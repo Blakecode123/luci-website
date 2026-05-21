@@ -86,7 +86,7 @@
   //   assets/faq/singingbowls.jpg
   //   assets/faq/yoga.jpg
   //   assets/faq/breathwork.jpg
-  var FAQ_IMAGE_EXT = 'jpg';
+  var FAQ_IMAGE_EXT = 'webp';
 
   var MODALITY_CONTENT = {
     gong: {
